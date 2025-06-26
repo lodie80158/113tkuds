@@ -9,7 +9,7 @@ public class ds_03 {
         String name = scanner.nextLine();
         System.out.print("請輸入年齡：");
         int age = scanner.nextInt();
-        scanner.nextLine(); // 吃掉換行符號
+        scanner.nextLine(); 
         System.out.print("請輸入城市：");
         String city = scanner.nextLine();
         System.out.println("你的個人資訊如下：");
