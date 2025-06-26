@@ -8,7 +8,7 @@ public class ds_06 {
         int[] arr = new int[10];
         System.out.print("隨機產生的陣列元素：");
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = rand.nextInt(100); // 0~99
+            arr[i] = rand.nextInt(100); 
             System.out.print(arr[i] + " ");
         }
         System.out.println();
