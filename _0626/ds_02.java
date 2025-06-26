@@ -1,6 +1,5 @@
 package _0626;
 
-
 import java.util.Scanner;
 
 public class ds_02 {
