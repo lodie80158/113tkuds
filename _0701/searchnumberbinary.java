@@ -1,8 +1,6 @@
-
 package _0701;
 import java.util.Scanner;
-
-public class searchnumber_ {
+public class searchnumberbinary {
     public static void main(String[] args) {
    
 
@@ -40,4 +38,5 @@ public class searchnumber_ {
         scanner.close();
     }
 }
+
 
