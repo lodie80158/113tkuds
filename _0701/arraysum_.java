@@ -1,6 +1,6 @@
+package _0701;
 
-
-public class arraysum {
+public class arraysum_ {
     public static int sum(int[] arr, int n){
         int total=0;
         for (int i=0;i<n;i++){
