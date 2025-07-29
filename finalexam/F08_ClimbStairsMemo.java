@@ -1,21 +1,33 @@
 package finalexam;
 
+import java.util.Scanner;
+
 public class F08_ClimbStairsMemo {
-    public static int climb(int n, int[] memo) {
+
+    static long[] memo;
+
+    static long ways(int n) {
         if (n < 0) return 0;
         if (n == 0) return 1;
         if (memo[n] != -1) return memo[n];
-        return memo[n] = climb(n - 1, memo) + climb(n - 2, memo) + climb(n - 3, memo);
+        memo[n] = ways(n - 1) + ways(n - 2) + ways(n - 3);
+        return memo[n];
     }
+
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int[] memo = new int[n + 1];
-        java.util.Arrays.fill(memo, -1);
-        System.out.println("Ways: " + climb(n, memo));
+        memo = new long[n + 1];
+        for (int i = 0; i <= n; i++) memo[i] = -1;
+
+        long result = ways(n);
+        System.out.println("Ways: " + result);
+        sc.close();
     }
-    /*
-     * Time Complexity: O(n)
-     * 說明：記憶化最多計算 n 次。
-     */
 }
+
+/*
+ * Time Complexity: O(n)
+ * 說明：記憶化避免重複計算，每階只計算一次，時間複雜度為線性 O(n)。
+ */
+

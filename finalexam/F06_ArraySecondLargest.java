@@ -1,31 +1,63 @@
 package finalexam;
 
+import java.util.Scanner;
+
 public class F06_ArraySecondLargest {
-    public static int[] helper(int[] arr, int l, int r) {
-        if (l == r) return new int[]{arr[l], Integer.MIN_VALUE};
-        int m = (l + r) / 2;
-        int[] left = helper(arr, l, m);
-        int[] right = helper(arr, m + 1, r);
-        int max, second;
-        if (left[0] > right[0]) {
-            max = left[0];
-            second = Math.max(left[1], right[0]);
-        } else {
-            max = right[0];
-            second = Math.max(right[1], left[0]);
+
+    static class Pair {
+        int max;
+        int second;
+
+        Pair(int max, int second) {
+            this.max = max;
+            this.second = second;
         }
-        return new int[]{max, second};
     }
+
+
+    static Pair findSecondLargest(int[] arr, int left, int right) {
+        if (left == right) {
+    
+            return new Pair(arr[left], Integer.MIN_VALUE);
+        }
+        int mid = (left + right) / 2;
+        Pair leftPair = findSecondLargest(arr, left, mid);
+        Pair rightPair = findSecondLargest(arr, mid + 1, right);
+
+
+        int max, second;
+        if (leftPair.max > rightPair.max) {
+            max = leftPair.max;
+            second = Math.max(leftPair.second, rightPair.max);
+        } else if (leftPair.max < rightPair.max) {
+            max = rightPair.max;
+            second = Math.max(rightPair.second, leftPair.max);
+        } else {
+
+            max = leftPair.max;
+            second = Math.max(leftPair.second, rightPair.second);
+        }
+        return new Pair(max, second);
+    }
+
     public static void main(String[] args) {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+
         int n = sc.nextInt();
         int[] arr = new int[n];
-        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();
-        int[] res = helper(arr, 0, n - 1);
-        System.out.println("SecondMax: " + res[1]);
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Pair result = findSecondLargest(arr, 0, n - 1);
+        System.out.println("SecondMax: " + result.second);
+
+        sc.close();
     }
-    /*
-     * Time Complexity: O(n)
-     * 說明：遞迴兩兩比較並向上合併最大與次大值。
-     */
 }
+
+/*
+ * Time Complexity: O(n)
+ * 說明：遞迴透過分治法拆分陣列，整體對 n 個元素做合併與比較，時間複雜度為線性 O(n)。
+ */
+
